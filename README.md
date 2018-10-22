@@ -61,7 +61,7 @@ ref: https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
 `kubectl config view`
 I got below response
 
-`apiVersion: v1
+apiVersion: v1
 clusters:
 - cluster:
 certificate-authority: /Users/balsingh1/.minikube/ca.crt
@@ -79,7 +79,7 @@ users:
 - name: minikube
 user:
 client-certificate: /Users/balsingh1/.minikube/client.crt
-client-key: /Users/balsingh1/.minikube/client.keyapiVersion: v1`
+client-key: /Users/balsingh1/.minikube/client.keyapiVersion: v1
 
 Run
 
@@ -89,17 +89,17 @@ Got response
 minikube
 The next step is to define a context for the kubectl client to work in each namespace. The value of “cluster” and “user” fields are copied from the current context.
 
-kubectl config set-context dev --namespace=balram \
+`kubectl config set-context dev --namespace=balram \
 >   --cluster=minikube \
->   --user=minikube
+>   --user=minikube`
 Response
 
-Context "dev" created.
+`Context "dev" created.`
 Recheck config
 
-kubectl config viewGot response
+`kubectl config viewGot response`
 Response
-
+`
 apiVersion: v1
 clusters:
 - cluster:
@@ -123,13 +123,14 @@ users:
 - name: minikube
 user:
 client-certificate: /Users/balsingh1/.minikube/client.crt
-client-key: /Users/balsingh1/.minikube/client.key
+client-key: /Users/balsingh1/.minikube/client.key`
+
 Let’s switch to operate in the development namespace.
 
-kubectl config use-context dev
+`kubectl config use-context dev`
 You can verify your current context by doing the following:
 
-kubectl config current-context
+`kubectl config current-context`
 response
 
 dev
@@ -137,21 +138,21 @@ At this point, all requests we make to the Kubernetes cluster from the command l
 
 Let’s create some contents.
 
-kubectl run snowflake --image=kubernetes/serve_hostname --replicas=2
+`kubectl run snowflake --image=kubernetes/serve_hostname --replicas=2`
 We have just created a deployment whose replica size is 2 that is running the pod called snowflake with a basic container that just serves the hostname. Note that kubectl run creates deployments only on Kubernetes cluster >= v1.2. If you are running older versions, it creates replication controllers instead. If you want to obtain the old behavior, use --generator=run/v1 to create replication controllers. See kubectl runfor more details.
 
-kubectl get deployment
+`kubectl get deployment`
 Response
-
+`
 NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 snowflake   2         2         2            2           1m
-kubectl get pods -l run=snowflake
-response
+kubectl get pods -l run=snowflake`
 
+response
+`
 NAME                         READY   STATUS    RESTARTS   AGE
 snowflake-54fccfcd67-dflkh   1/1     Running   0          8m
-snowflake-54fccfcd67-lww4w   1/1     Running   0          8m
-Ingress
+snowflake-54fccfcd67-lww4w   1/1     Running   0          8m`
 
 
 ##Ref
@@ -174,4 +175,4 @@ Recently, someone asked me what the difference between NodePorts, LoadBalancers,
 medium.com	
 Command to get IP of service if it is saying pending in kubectl get services
 
-minikube service list
+`minikube service list`
