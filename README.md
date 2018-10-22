@@ -1,5 +1,5 @@
 
-<img src="https://www.isotoma.com/blog/wp-content/uploads/2017/10/kubernetes-logo.png" alt="Kubernetes" height="100" align="center" />
+<img src="https://www.isotoma.com/blog/wp-content/uploads/2017/10/kubernetes-logo.png" alt="Kubernetes" height="400" align="center" />
 
 # Kubernetes
 This app has an example of 2 Pods, 2 Services, 1 Ingress and 1 namespace
@@ -27,19 +27,19 @@ Install Virtualbox
 
 Install kubectl
 
-brew install kubernetes-cli
+`brew install kubernetes-cli
 Install minikube
 
 brew cask install minikube
-minikube start
+minikube start`
 Get all namespaces
 
-kubectl get namespaces
+`kubectl get namespaces`
 Create new namespace
 
 namespace-balram.json
 
-{
+`{
  “kind”: “Namespace”,
  “apiVersion”: “v1”,
  “metadata”: {
@@ -48,18 +48,20 @@ namespace-balram.json
  “name”: “balram”
  }
  }
-}
+}`
+
 Run command
 
-kubectl create -f namespace-balram.json
+`kubectl create -f namespace-balram.json`
+
 ref: https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
 
-See Kubectl config
+##See Kubectl config
 
-kubectl config view
+`kubectl config view`
 I got below response
 
-apiVersion: v1
+`apiVersion: v1
 clusters:
 - cluster:
 certificate-authority: /Users/balsingh1/.minikube/ca.crt
@@ -77,10 +79,11 @@ users:
 - name: minikube
 user:
 client-certificate: /Users/balsingh1/.minikube/client.crt
-client-key: /Users/balsingh1/.minikube/client.keyapiVersion: v1
+client-key: /Users/balsingh1/.minikube/client.keyapiVersion: v1`
+
 Run
 
-kubectl config current-context
+`kubectl config current-context`
 Got response
 
 minikube
