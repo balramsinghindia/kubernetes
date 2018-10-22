@@ -1,3 +1,6 @@
+
+<img src="https://www.isotoma.com/blog/wp-content/uploads/2017/10/kubernetes-logo.png" alt="Kubernetes" align="center" />
+
 # Kubernetes
 This app has an example of 2 Pods, 2 Services, 1 Ingress and 1 namespace
 
