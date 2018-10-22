@@ -157,6 +157,8 @@ https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 https://kubernetes.io/docs/concepts/services-networking/service/
 
 ##Ingress
+<img src="https://cdn-images-1.medium.com/max/1600/1*Vec29Sq5PJaUPhoj6jBmtg.png" alt="Kubernetes" align="center" />
+
 
 Edit This Page An API object that manages external access to the services in a cluster, typically HTTP. Ingress can…
 kubernetes.io	
