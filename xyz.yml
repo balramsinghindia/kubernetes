@@ -1,0 +1,95 @@
+kind: "Namespace"
+apiVersion: "v1"
+metadata: 
+  name: "xyz-ns"
+  labels:
+    name: "xyz-ns"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress-1
+  namespace: xyz-ns
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        backend:
+          serviceName: xyz-service-1
+          servicePort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: xyz-service-1
+  namespace: xyz-ns
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-1
+  namespace: xyz-ns
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: user-app
+        image: ashleybarrett/node-hello-world
+        ports:
+        - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: xyz-service-1
+  namespace: xyz-ns
+spec:
+  selector:
+    app: nginx-1
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-2
+  namespace: xyz-ns
+  labels:
+    app: nginx-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-1
+  template:
+    metadata:
+      labels:
+        app: nginx-1
+    spec:
+      containers:
+      - name: user-app
+        image: ashleybarrett/node-hello-world
+        ports:
+        - containerPort: 8080
+---
