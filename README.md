@@ -3,6 +3,7 @@
 
 # Kubernetes
 This app has an example of 2 Pods, 2 Services, 1 Ingress and 1 namespace
+https://medium.com/@reactjavascript/kubernetes-dc89a32a425a 
 
 Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
 
